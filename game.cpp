@@ -10,31 +10,31 @@
 using namespace sf;
 using namespace std;
 
-const unsigned int		SCREEN_WIDTH		= 1920;		// размеры
-const unsigned int		SCREEN_HEIGHT		= 1080;		// игрового окна
-const float				SPEED				= 0.15;		// скорость игрока
-unsigned int			SCORE				= 0;		// счёт
-unsigned int			score               = 0;		// счёт, но меньше
-float                   DIFFICULT           = 1;        // сложность игры (частота появления ядер)
-unsigned int            CORES_NUM           = 0;        // общее количество ядер
+const unsigned int		SCREEN_WIDTH		= 1920;		// СЂР°Р·РјРµСЂС‹
+const unsigned int		SCREEN_HEIGHT		= 1080;		// РёРіСЂРѕРІРѕРіРѕ РѕРєРЅР°
+const float				SPEED				= 0.15;		// СЃРєРѕСЂРѕСЃС‚СЊ РёРіСЂРѕРєР°
+unsigned int			SCORE				= 0;		// СЃС‡С‘С‚
+unsigned int			score               = 0;		// СЃС‡С‘С‚, РЅРѕ РјРµРЅСЊС€Рµ
+float                   DIFFICULT           = 1;        // СЃР»РѕР¶РЅРѕСЃС‚СЊ РёРіСЂС‹ (С‡Р°СЃС‚РѕС‚Р° РїРѕСЏРІР»РµРЅРёСЏ СЏРґРµСЂ)
+unsigned int            CORES_NUM           = 0;        // РѕР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЏРґРµСЂ
 bool					ISDEAD;
 class					Cores;
 class					Chests;
-vector<Cores>			all_cores;						// коллекция препятствий
-vector<Chests>			all_chests;						// коллекция очков
+vector<Cores>			all_cores;						// РєРѕР»Р»РµРєС†РёСЏ РїСЂРµРїСЏС‚СЃС‚РІРёР№
+vector<Chests>			all_chests;						// РєРѕР»Р»РµРєС†РёСЏ РѕС‡РєРѕРІ
 
 class Player {
 public:
-    float speedx, speedy;   // скорость по осям
-    FloatRect rect;         // рект типа спрайт с текстурой и размеры есть еще чето там вот
-    Sprite sprite;          // спрайт типа фанта
+    float speedx, speedy;   // СЃРєРѕСЂРѕСЃС‚СЊ РїРѕ РѕСЃСЏРј
+    FloatRect rect;         // СЂРµРєС‚ С‚РёРїР° СЃРїСЂР°Р№С‚ СЃ С‚РµРєСЃС‚СѓСЂРѕР№ Рё СЂР°Р·РјРµСЂС‹ РµСЃС‚СЊ РµС‰Рµ С‡РµС‚Рѕ С‚Р°Рј РІРѕС‚
+    Sprite sprite;          // СЃРїСЂР°Р№С‚ С‚РёРїР° С„Р°РЅС‚Р°
     Player(Texture& texture) {
-        sprite.setTexture(texture);                                     // загрузка текстуры
-        sprite.setTextureRect(IntRect(0, 0, 64, 64));                   // натягивание текстуры на спрайт
-        rect = FloatRect(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 64, 64);  // создание ректа
-        sprite.setPosition(rect.left, rect.top);                        // расположение спрайта на экране
-        speedx = speedy = 0;                                            // начальная скорость = 0
-        ISDEAD = false;                                                 // начальное состояние: жив
+        sprite.setTexture(texture);                                     // Р·Р°РіСЂСѓР·РєР° С‚РµРєСЃС‚СѓСЂС‹
+        sprite.setTextureRect(IntRect(0, 0, 64, 64));                   // РЅР°С‚СЏРіРёРІР°РЅРёРµ С‚РµРєСЃС‚СѓСЂС‹ РЅР° СЃРїСЂР°Р№С‚
+        rect = FloatRect(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, 64, 64);  // СЃРѕР·РґР°РЅРёРµ СЂРµРєС‚Р°
+        sprite.setPosition(rect.left, rect.top);                        // СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ СЃРїСЂР°Р№С‚Р° РЅР° СЌРєСЂР°РЅРµ
+        speedx = speedy = 0;                                            // РЅР°С‡Р°Р»СЊРЅР°СЏ СЃРєРѕСЂРѕСЃС‚СЊ = 0
+        ISDEAD = false;                                                 // РЅР°С‡Р°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ: Р¶РёРІ
     }
     void update(float time) {
         rect.left += speedx * time;
@@ -72,24 +72,24 @@ public:
 
 class Cores {
 public:
-    float speedx, speedy;   // скорость по осям
-    FloatRect rect;         // рект типа спрайт с текстурой и размеры есть еще чето там вот
-    Sprite sprite;          // спрайт типа фанта
+    float speedx, speedy;   // СЃРєРѕСЂРѕСЃС‚СЊ РїРѕ РѕСЃСЏРј
+    FloatRect rect;         // СЂРµРєС‚ С‚РёРїР° СЃРїСЂР°Р№С‚ СЃ С‚РµРєСЃС‚СѓСЂРѕР№ Рё СЂР°Р·РјРµСЂС‹ РµСЃС‚СЊ РµС‰Рµ С‡РµС‚Рѕ С‚Р°Рј РІРѕС‚
+    Sprite sprite;          // СЃРїСЂР°Р№С‚ С‚РёРїР° С„Р°РЅС‚Р°
     Texture txt;
     Cores(Texture& texture) {
         txt = texture;
         sprite.setTexture(txt);
         sprite.setTextureRect(IntRect(0, 0, 16, 16));
-        bool left = rand() % 2, top = rand() % 2;                                           // рандомный спавн 
-        if (left) { if (top) { rect = FloatRect(rand() % SCREEN_WIDTH, 0, 64, 64); }        // движущихся
-        else { rect = FloatRect(SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 64, 64); }}           // препятствий
-        else { if (top) { rect = FloatRect(rand() % SCREEN_WIDTH, SCREEN_HEIGHT, 64, 64);}  // по периметру
-        else { rect = FloatRect(0, rand() % SCREEN_HEIGHT, 64, 64); }}           // карты
-        sprite.setPosition(rect.left, rect.top); speedx = speedy = 0;                       // установка ядра
+        bool left = rand() % 2, top = rand() % 2;                                           // СЂР°РЅРґРѕРјРЅС‹Р№ СЃРїР°РІРЅ 
+        if (left) { if (top) { rect = FloatRect(rand() % SCREEN_WIDTH, 0, 64, 64); }        // РґРІРёР¶СѓС‰РёС…СЃСЏ
+        else { rect = FloatRect(SCREEN_WIDTH, rand() % SCREEN_HEIGHT, 64, 64); }}           // РїСЂРµРїСЏС‚СЃС‚РІРёР№
+        else { if (top) { rect = FloatRect(rand() % SCREEN_WIDTH, SCREEN_HEIGHT, 64, 64);}  // РїРѕ РїРµСЂРёРјРµС‚СЂСѓ
+        else { rect = FloatRect(0, rand() % SCREEN_HEIGHT, 64, 64); }}           // РєР°СЂС‚С‹
+        sprite.setPosition(rect.left, rect.top); speedx = speedy = 0;                       // СѓСЃС‚Р°РЅРѕРІРєР° СЏРґСЂР°
     }
     
     void update(float time) {
-        if (!ISDEAD) {                                                                      // прямолинейное движение
+        if (!ISDEAD) {                                                                      // РїСЂСЏРјРѕР»РёРЅРµР№РЅРѕРµ РґРІРёР¶РµРЅРёРµ
             rect.left += speedx * time;
             rect.top += speedy * time;
         }
@@ -100,9 +100,9 @@ public:
 
 class Chests {
 public:
-    FloatRect rect;         // рект типа спрайт с текстурой и размеры есть еще чето там вот
-    Sprite sprite;          // спрайт типа фанта
-    bool collect;           // флаг собран или нет
+    FloatRect rect;         // СЂРµРєС‚ С‚РёРїР° СЃРїСЂР°Р№С‚ СЃ С‚РµРєСЃС‚СѓСЂРѕР№ Рё СЂР°Р·РјРµСЂС‹ РµСЃС‚СЊ РµС‰Рµ С‡РµС‚Рѕ С‚Р°Рј РІРѕС‚
+    Sprite sprite;          // СЃРїСЂР°Р№С‚ С‚РёРїР° С„Р°РЅС‚Р°
+    bool collect;           // С„Р»Р°Рі СЃРѕР±СЂР°РЅ РёР»Рё РЅРµС‚
     Chests(Texture& texture) {
         collect = false;
         sprite.setTexture(texture);
@@ -116,8 +116,8 @@ public:
 void create_core(Clock& clock, Texture& tCore, Player& ship, Cores*& pCore) {
     if (clock.getElapsedTime().asSeconds() > DIFFICULT && !ISDEAD) {
         pCore = new Cores(tCore);
-        pCore->speedx = -(pCore->rect.left - 32 - ship.rect.left) / 6000;       // рассчет скорости и направление 
-        pCore->speedy = -(pCore->rect.top - 32 - ship.rect.top) / 6000;         // по х и у к центру кораблика
+        pCore->speedx = -(pCore->rect.left - 32 - ship.rect.left) / 6000;       // СЂР°СЃСЃС‡РµС‚ СЃРєРѕСЂРѕСЃС‚Рё Рё РЅР°РїСЂР°РІР»РµРЅРёРµ 
+        pCore->speedy = -(pCore->rect.top - 32 - ship.rect.top) / 6000;         // РїРѕ С… Рё Сѓ Рє С†РµРЅС‚СЂСѓ РєРѕСЂР°Р±Р»РёРєР°
         all_cores.push_back(*pCore); ++CORES_NUM; int i = 0;
         for (auto& el : all_cores) {
             if ((el.rect.left > 1920 || el.rect.left < 0) && (el.rect.top > 1080 || el.rect.top < 0)) { all_cores.erase(all_cores.begin() + i); }
@@ -295,12 +295,12 @@ Sound shoot;
 int main() {
     srand(time(0)); RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "A COOL PIRATE SHIP IS FLOATING AND TRYING TO SURVIVE FROM THE LAST 2D FORCES AND TREASURES");
 //-----------------------------------------------------------------------------------------------------------
-    Clock clock;                                                    // часы для отвзяки от мощности пк
-    Clock cores_clock;                                              // часы для спавна ядер
-    Clock chests_clock;                                             // часы для спавна сундуков
+    Clock clock;                                                    // С‡Р°СЃС‹ РґР»СЏ РѕС‚РІР·СЏРєРё РѕС‚ РјРѕС‰РЅРѕСЃС‚Рё РїРє
+    Clock cores_clock;                                              // С‡Р°СЃС‹ РґР»СЏ СЃРїР°РІРЅР° СЏРґРµСЂ
+    Clock chests_clock;                                             // С‡Р°СЃС‹ РґР»СЏ СЃРїР°РІРЅР° СЃСѓРЅРґСѓРєРѕРІ
 //-----------------------------------------------------------------------------------------------------------
     SoundBuffer buffer;
-    buffer.loadFromFile("music.mp3");                               // загрузил крутую музычку
+    buffer.loadFromFile("music.mp3");                               // Р·Р°РіСЂСѓР·РёР» РєСЂСѓС‚СѓСЋ РјСѓР·С‹С‡РєСѓ
     Sound sound;
     sound.setBuffer(buffer);
     sound.setVolume(30);
@@ -314,24 +314,24 @@ int main() {
     Sound holera(holeraBuffer);
     
 //-----------------------------------------------------------------------------------------------------------
-    Font font;                                                      // загрузка шрифта для текста
+    Font font;                                                      // Р·Р°РіСЂСѓР·РєР° С€СЂРёС„С‚Р° РґР»СЏ С‚РµРєСЃС‚Р°
     if (!font.loadFromFile("impact.ttf")) { cout << "ERROR FONT!!!"; };
     Text text; text.setFont(font);
     string report;
 //-----------------------------------------------------------------------------------------------------------
-    Texture tship; tship.loadFromFile("ship.png");                  // текстура кораблика
-    Player ship(tship);                                             // кораблик (игрок)
+    Texture tship; tship.loadFromFile("ship.png");                  // С‚РµРєСЃС‚СѓСЂР° РєРѕСЂР°Р±Р»РёРєР°
+    Player ship(tship);                                             // РєРѕСЂР°Р±Р»РёРє (РёРіСЂРѕРє)
 
-    Texture tWater; tWater.loadFromFile("water.jpg");               // текстура воды (фона)
-    Sprite sWater; sWater.setTexture(tWater);                       // спрайт воды
+    Texture tWater; tWater.loadFromFile("water.jpg");               // С‚РµРєСЃС‚СѓСЂР° РІРѕРґС‹ (С„РѕРЅР°)
+    Sprite sWater; sWater.setTexture(tWater);                       // СЃРїСЂР°Р№С‚ РІРѕРґС‹
     sWater.setPosition(0, 0);
 
-    Texture tCore; tCore.loadFromFile("core.png");                  // текстура ядра (препятствия)
+    Texture tCore; tCore.loadFromFile("core.png");                  // С‚РµРєСЃС‚СѓСЂР° СЏРґСЂР° (РїСЂРµРїСЏС‚СЃС‚РІРёСЏ)
     Cores* pCore;
 
     Texture tBoom; tBoom.loadFromFile("boom.png");
 
-    Texture tChest; tChest.loadFromFile("chest.png");               // текстура сундука (очка счёта)
+    Texture tChest; tChest.loadFromFile("chest.png");               // С‚РµРєСЃС‚СѓСЂР° СЃСѓРЅРґСѓРєР° (РѕС‡РєР° СЃС‡С‘С‚Р°)
     Chests* pChest;
 //-----------------------------------------------------------------------------------------------------------
     while (window.isOpen()) {
@@ -343,9 +343,9 @@ int main() {
                 window.close();
         }} 
         float time = clock.getElapsedTime().asMicroseconds();
-        clock.restart(); time = time / 500;                         // скорость обновления анимации
+        clock.restart(); time = time / 500;                         // СЃРєРѕСЂРѕСЃС‚СЊ РѕР±РЅРѕРІР»РµРЅРёСЏ Р°РЅРёРјР°С†РёРё
 //-----------------------------------------------------------------------------------------------------------
-// действия:
+// РґРµР№СЃС‚РІРёСЏ:
         text.setPosition(0, 0);
         create_core(cores_clock, tCore, ship, *&pCore);
         diff_up();
@@ -357,14 +357,14 @@ int main() {
         report += score += to_string(SCORE) += diff += to_string(DIFFICULT);
         text.setString(report);
 //-----------------------------------------------------------------------------------------------------------
-// update-функции:
-        ship.update(time);                                          // обновление кораблика
-        for (auto& el : all_cores) { el.update(time); }             // обновление всех ядер
-        for (auto& el : all_chests) { el.update(); }                // обновление всех сундуков
+// update-С„СѓРЅРєС†РёРё:
+        ship.update(time);                                          // РѕР±РЅРѕРІР»РµРЅРёРµ РєРѕСЂР°Р±Р»РёРєР°
+        for (auto& el : all_cores) { el.update(time); }             // РѕР±РЅРѕРІР»РµРЅРёРµ РІСЃРµС… СЏРґРµСЂ
+        for (auto& el : all_chests) { el.update(); }                // РѕР±РЅРѕРІР»РµРЅРёРµ РІСЃРµС… СЃСѓРЅРґСѓРєРѕРІ
 //-----------------------------------------------------------------------------------------------------------
-// отрисовка:
-        if (!ISDEAD) { window.draw(sWater); }                       // отрисовка фона во время игры
-        else { window.clear(Color::Red);                            // и при поражении
+// РѕС‚СЂРёСЃРѕРІРєР°:
+        if (!ISDEAD) { window.draw(sWater); }                       // РѕС‚СЂРёСЃРѕРІРєР° С„РѕРЅР° РІРѕ РІСЂРµРјСЏ РёРіСЂС‹
+        else { window.clear(Color::Red);                            // Рё РїСЂРё РїРѕСЂР°Р¶РµРЅРёРё
         report += "Press ENTER to restart";
         text.setString(report);
         text.setPosition(1920 / 2 - 100, 1080 / 2 - 25);
@@ -374,11 +374,11 @@ int main() {
             RESTART(ship);
         }
         }                          
-        window.draw(ship.sprite);                                   // отрисовка кораблика
-        for (auto& el : all_cores) { window.draw(el.sprite); }      // отрисовка всех ядер
-        for (auto& el : all_chests) { window.draw(el.sprite); }     // отрисовка всех сундуков
-        window.draw(text);                                          // отрисовка очков
-        report.clear();                                             // очистка строки
+        window.draw(ship.sprite);                                   // РѕС‚СЂРёСЃРѕРІРєР° РєРѕСЂР°Р±Р»РёРєР°
+        for (auto& el : all_cores) { window.draw(el.sprite); }      // РѕС‚СЂРёСЃРѕРІРєР° РІСЃРµС… СЏРґРµСЂ
+        for (auto& el : all_chests) { window.draw(el.sprite); }     // РѕС‚СЂРёСЃРѕРІРєР° РІСЃРµС… СЃСѓРЅРґСѓРєРѕРІ
+        window.draw(text);                                          // РѕС‚СЂРёСЃРѕРІРєР° РѕС‡РєРѕРІ
+        report.clear();                                             // РѕС‡РёСЃС‚РєР° СЃС‚СЂРѕРєРё
         window.display();
 
     }
