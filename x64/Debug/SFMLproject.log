@@ -1,0 +1,136 @@
+﻿  game.cpp
+C:\SFML\SFMLproject\SFMLproject\game.cpp(72,31): warning C4305: инициализация: усечение из "double" в "float"
+C:\SFML\SFMLproject\SFMLproject\game.cpp(141,56): warning C4244: аргумент: преобразование "unsigned int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(142,54): warning C4244: аргумент: преобразование "unsigned int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(143,51): warning C4244: аргумент: преобразование "unsigned int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(144,43): warning C4244: аргумент: преобразование "unsigned int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(167,63): warning C4244: аргумент: преобразование "unsigned int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(167,33): warning C4244: аргумент: преобразование "unsigned int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(203,76): warning C4305: -=: усечение из "double" в "float"
+C:\SFML\SFMLproject\SFMLproject\game.cpp(210,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(211,28): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(224,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(225,28): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(238,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(239,28): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(252,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(253,28): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(265,20): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(266,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(277,20): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(278,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(288,20): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(289,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(299,20): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(300,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(310,20): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(311,24): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(326,16): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(327,20): warning C4244: инициализация: преобразование "T" в "int", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+C:\SFML\SFMLproject\SFMLproject\game.cpp(353,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\SFML\SFMLproject\SFMLproject\game.cpp(402,20): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+  SFMLproject.vcxproj -> C:\SFML\SFMLproject\SFMLproject\x64\Debug\SFMLproject.exe
